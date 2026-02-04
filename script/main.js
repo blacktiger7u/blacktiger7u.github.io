@@ -67,7 +67,7 @@ const animationTimeline = () => {
             0.6 // Odstęp czasu między zdjęciami
         )
         .from(".gallery-text", 1, { opacity: 0, y: 20 }, "-=0.5")
-        .to(".gallery", 0.7, { opacity: 0, y: -50, scale: 0.9 }, "+=4") // Wyjazd galerii
+        .to(".gallery", 0.7, { opacity: 0, y: -50, scale: 0.9 }, "+=8") // Wyjazd galerii
 
         // --- FINAŁ ---
         .from(".six", 0.5, { opacity: 0, y: 30 })
