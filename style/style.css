@@ -4,23 +4,45 @@ html {
 
 body {
     margin: 0;
-    font-family: "Work Sans", "Helvetica Neue", Helvetica, sans-serif; /* Bardziej modern font stack */
+    font-family: "Work Sans", "Helvetica Neue", Helvetica, sans-serif;
     -webkit-user-select: none;
     user-select: none;
     overflow: hidden;
-    background-color: #fafafa; /* Czyste, prawie białe tło */
+    background-color: #fff0f5; /* LavenderBlush */
     color: #222;
+    transition: background-color 0.5s ease, color 0.5s ease; /* Płynne przejście kolorów */
+}
+
+/* 1. EFEKT NEGATYWU (Dla żartu "KYS") */
+body.inverted {
+    filter: invert(100%);
+    background-color: #000;
+}
+
+/* 2. EFEKT DARK MODE (Dla wiersza - elegancki czarny) */
+body.dark-mode {
+    background-color: #111; /* Prawie czarny */
+    color: #fff;
+}
+/* Zmiana stylu boxa z wierszem w trybie ciemnym */
+body.dark-mode .poem-content {
+    background: rgba(20, 20, 20, 0.9); /* Ciemne tło boxa */
+    border: 1px solid #333;
+    box-shadow: 0 10px 40px rgba(233, 30, 99, 0.2); /* Różowa poświata */
+}
+body.dark-mode .poem-text {
+    color: #eee; /* Jasny tekst */
 }
 
 .container {
     height: 100vh;
-    height: 100dvh; /* Mobile fix */
+    height: 100dvh;
     width: 100%;
     margin: 0 auto;
     text-align: center;
     visibility: hidden;
     position: relative;
-    overflow: hidden;
+    overflow: hidden; /* Ukrywa paski przewijania */
 }
 
 .container > div {
@@ -30,28 +52,17 @@ body {
     top: 20vh;
 }
 
+/* --- RESZTA STYLÓW BEZ ZMIAN AŻ DO GALERII --- */
+
 /* 1. Intro */
-.one {
-    font-size: 4rem;
-    font-weight: 700;
-}
-.one #name {
-    color: #e91e63; /* Mocny róż/czerwień */
-}
-.two {
-    font-size: 1.5rem;
-    font-weight: lighter;
-    margin-top: 10px;
-    color: #666;
-}
+.one { font-size: 4rem; font-weight: 700; }
+.one #name { color: #e91e63; }
+.two { font-size: 1.5rem; font-weight: lighter; margin-top: 10px; color: #666; }
 
 /* 2. Valentine text */
-.three {
-    font-size: 3rem;
-    font-weight: bold;
-}
+.three { font-size: 3rem; font-weight: bold; }
 
-/* 3. Chatbox - Modern Style */
+/* 3. Chatbox */
 .four .text-box {
     width: 80%;
     max-width: 500px;
@@ -61,7 +72,7 @@ body {
     padding: 25px;
     position: relative;
     background: #fff;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1); /* Głęboki cień */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
 }
 .text-box p { margin: 0; text-align: left; font-size: 1.1rem; line-height: 1.4; }
 .text-box span { visibility: hidden; }
@@ -87,59 +98,124 @@ body {
     right: 0;
     padding: 0 20px;
 }
-.idea-3 strong {
-    color: #e91e63;
-    font-weight: 800;
-}
+.idea-3 strong { color: #e91e63; font-weight: 800; }
 .five .idea-5 { font-size: 3rem; }
 .idea-5 span { display: block; color: #e91e63; font-weight: bold; margin-top: 10px;}
 .idea-6 span { font-size: 8rem; font-weight: 800; color: #333; }
 
-/* 5. NEW GALLERY SECTION */
+/* 5. POEM SECTION */
+.poem-container {
+    top: 10vh !important;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
+    opacity: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+}
+
+.poem-content {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(5px);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(233, 30, 99, 0.15);
+    border: 1px solid rgba(233, 30, 99, 0.1);
+    width: 100%;
+    transition: background 0.5s ease; /* Płynna zmiana tła boxa */
+}
+
+.poem-title {
+    font-size: 1.6rem;
+    color: #e91e63;
+    margin-bottom: 15px;
+    font-style: italic;
+    font-weight: 700;
+}
+
+.poem-text {
+    font-size: 1.1rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #333;
+    white-space: pre-line;
+    font-family: 'Georgia', serif;
+    text-align: left;
+    padding-left: 10px;
+}
+
+.poem-signature {
+    text-align: right;
+    font-family: "Courier New", monospace;
+    color: #e91e63;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 15px;
+}
+
+/* --- 6. NOWA GALERIA (PIONOWA) --- */
 .gallery {
-    top: 15vh !important; /* Wyżej żeby się zdjęcia mieściły */
+    top: 5vh !important; /* Wyżej, żeby zmieścić listę */
+    display: flex;
+    flex-direction: column; /* Ustawia zdjęcia w pionie */
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 20;
+    height: 80vh; /* Ograniczona wysokość */
+    overflow-y: auto; /* Pozwala na przewijanie jeśli zdjęć jest dużo */
+    padding-bottom: 50px;
+    /* Ukrywanie paska przewijania (estetyka) */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.gallery::-webkit-scrollbar {
+    display: none;
+}
+
+.photo-container {
+    /* Kontener nie jest już potrzebny do pozycjonowania absolute,
+       ale trzymamy go jako wrapper */
+    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 20px; /* Odstęp między zdjęciami */
 }
-.photo-container {
-    position: relative;
-    width: 300px;
-    height: 400px;
-}
+
 .gallery-img {
-    position: absolute;
-    width: 240px;
+    position: relative; /* ZMIANA: Relative zamiast absolute */
+    width: 80%; /* Szerokość względem ekranu */
+    max-width: 300px;
     height: auto;
-    max-height: 350px;
     object-fit: cover;
     border: 8px solid #fff;
     box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-    opacity: 0; /* JS to zmieni */
-    left: 30px; /* Centrowanie w kontenerze */
-    transform-origin: center;
+    opacity: 0;
+    /* Usuwamy 'left' i transformacje w CSS, bo zrobi to JS */
+    left: auto;
 }
-/* Style dla konkretnych zdjęć żeby były trochę krzywo (naturalnie) */
-.g-one { transform: rotate(-5deg); z-index: 1; }
-.g-two { transform: rotate(8deg); z-index: 2; }
-.g-three { transform: rotate(-3deg); z-index: 3; }
+
+/* Usunąłem sztywne rotacje w CSS (.g-one, .g-two),
+   zrobi to JS dynamicznie, żeby było ładniej */
 
 .gallery-text {
-    margin-top: 20px;
+    margin-top: 30px;
+    margin-bottom: 50px; /* Miejsce na dole */
     font-size: 1.5rem;
     opacity: 0;
-    font-family: 'Courier New', Courier, monospace; /* Wygląda jak podpis na zdjęciu */
+    font-family: 'Courier New', Courier, monospace;
+    background: rgba(255,255,255,0.8);
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-/* 6. Final Reveal */
-.six {
-    top: 10vh !important;
-    z-index: 10;
-}
+/* 7. Final Reveal */
+.six { top: 10vh !important; z-index: 100; }
 .six img {
     display: inline-block;
-    max-width: 80vw;
+    max-width: 85vw;
     max-height: 45vh;
     height: auto;
     border-radius: 10px;
@@ -149,21 +225,15 @@ body {
 .wish-hbd { font-size: 2.2em; margin: 0; color: #222; }
 .wish h5 { font-weight: lighter; font-size: 1.2rem; margin: 10px 0 0; color: #777; }
 
-/* 7. Background Hearts */
+/* 8. Background Hearts */
 .eight {
     width: 100vw;
     height: 100vh;
     position: fixed;
     top: 0;
-    z-index: 0; /* W tle */
+    z-index: 0;
 }
-.eight svg {
-    width: 30px;
-    position: absolute;
-    visibility: hidden;
-    opacity: 0.6;
-}
-/* Rozrzucenie serc */
+.eight svg { width: 30px; position: absolute; visibility: hidden; opacity: 0.6; }
 .eight svg:nth-child(1) { top: 10vh; left: 10vw; fill: #ffcdd2; }
 .eight svg:nth-child(2) { top: 20vh; left: 80vw; fill: #f8bbd0; }
 .eight svg:nth-child(3) { top: 40vh; left: 15vw; fill: #e1bee7; }
@@ -173,30 +243,29 @@ body {
 .eight svg:nth-child(7) { top: 50vh; left: 60vw; fill: #ffcdd2; }
 .eight svg:nth-child(8) { top: 90vh; left: 70vw; fill: #f8bbd0; }
 
-/* 8. Outro */
+/* 9. Outro */
 .nine p { font-size: 1.5rem; color: #444; }
-#replay {
-    color: #e91e63;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 20px;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    letter-spacing: 2px;
-}
+#replay { color: #e91e63; font-weight: bold; cursor: pointer; margin-top: 20px; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 2px; }
 
 /* MOBILE OPTIMIZATION */
 @media screen and (max-width: 500px) {
     .container { width: 95%; }
     .one { font-size: 3rem; }
-    .three { font-size: 2.2rem; }
+    .three { font-size: 2rem; padding: 0 10px; }
     .four .text-box { width: 90%; padding: 20px; }
-    .text-box .fake-btn { bottom: -45px; right: 0; left: 0; margin: auto; width: 80px; text-align: center; } /* Przycisk na środku pod boxem */
-    .five .idea-5 { font-size: 2.2rem; }
+    .text-box .fake-btn { bottom: -45px; right: 0; left: 0; margin: auto; width: 80px; text-align: center; }
+    .five p { font-size: 1.5rem; }
+    .five .idea-5 { font-size: 2rem; }
     .idea-6 span { font-size: 5rem; }
-    .gallery { top: 10vh !important; }
-    .photo-container { width: 100%; height: 350px; }
-    .gallery-img { width: 70%; left: 15%; } /* Centrowanie zdjęć na mobile */
+    .poem-container { top: 5vh !important; }
+    .poem-content { padding: 20px; }
+    .poem-title { font-size: 1.4rem; margin-bottom: 10px; }
+    .poem-text { font-size: 0.95rem; line-height: 1.4; }
+
+    /* Galeria mobile */
+    .gallery { top: 5vh !important; height: 85vh; }
+    .gallery-img { width: 75%; max-width: none; }
+
     .wish-hbd { font-size: 1.8em; }
-    .six img { max-height: 40vh; }
+    .six img { max-height: 35vh; }
 }
