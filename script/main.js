@@ -16,28 +16,28 @@ const animationTimeline = () => {
         .to(".container", 0.1, { visibility: "visible" })
         .from(".one", 0.7, { opacity: 0, y: 10 })
         .from(".two", 0.4, { opacity: 0, y: 10 })
-        .to(".one", 0.7, { opacity: 0, y: 10 }, "+=2")
-        .to(".two", 0.7, { opacity: 0, y: 10 }, "-=1")
+        .to(".one", 0.7, { opacity: 0, y: 10 }, "+=3")
+        .to(".two", 0.7, { opacity: 0, y: 10 }, "+=1")
         .from(".three", 0.7, { opacity: 0, y: 10 })
-        .to(".three", 0.7, { opacity: 0, y: 10 }, "+=2")
+        .to(".three", 0.7, { opacity: 0, y: 10 }, "+=3")
         .from(".four", 0.7, { scale: 0.2, opacity: 0 })
         .from(".fake-btn", 0.3, { scale: 0.2, opacity: 0 })
         .staggerTo(".hbd-chatbox span", 0.04, { visibility: "visible" }, 0.04)
-        .to(".fake-btn", 0.1, { backgroundColor: "#e91e63", scale: 1.1 }, "+=0.5")
+        .to(".fake-btn", 0.1, { backgroundColor: "#e91e63", scale: 1.1 }, "+=1")
         .to(".fake-btn", 0.1, { scale: 1 })
         .to(".four", 0.5, { scale: 0.2, opacity: 0, y: -150 }, "+=1")
         .from(".idea-1", 0.7, ideaTextTrans)
-        .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.2")
+        .to(".idea-1", 0.7, ideaTextTransLeave, "+=1.7")
         .from(".idea-2", 0.7, ideaTextTrans)
-        .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.2")
+        .to(".idea-2", 0.7, ideaTextTransLeave, "+=1.7")
         .from(".idea-3", 0.7, ideaTextTrans)
         .to(".idea-3 strong", 0.5, { scale: 1.2, x: 10, color: "#e91e63" })
-        .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.2")
+        .to(".idea-3", 0.7, ideaTextTransLeave, "+=1.7")
         .from(".idea-4", 0.7, ideaTextTrans)
-        .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.2")
-        .from(".idea-5", 0.7, { rotationX: 15, rotationZ: -10, skewY: "-5deg", y: 50, z: 10, opacity: 0 }, "+=1")
-        .to(".idea-5 span", 0.7, { rotation: 90, x: 8 }, "+=2")
-        .to(".idea-5", 0.7, { scale: 0.2, opacity: 0 }, "+=2")
+        .to(".idea-4", 0.7, ideaTextTransLeave, "+=1.7")
+        .from(".idea-5", 0.7, { rotationX: 15, rotationZ: -10, skewY: "-5deg", y: 50, z: 10, opacity: 0 }, "+=2")
+        .to(".idea-5 span", 0.7, { rotation: 90, x: 8 }, "+=3")
+        .to(".idea-5", 0.7, { scale: 0.2, opacity: 0 }, "+=4")
 
         // --- ŻART: KYS (Inwersja/Negatyw) ---
         .staggerFrom(".idea-6 span", 0.8, { scale: 3, opacity: 0, rotation: 15, ease: Expo.easeOut }, 0.2)
@@ -56,7 +56,7 @@ const animationTimeline = () => {
         .from(".poem-text", 2, { opacity: 0 }, "+=0.5")
         .from(".poem-signature", 1, { opacity: 0, y: 10 }, "+=1")
         // Czas na czytanie (zostawiłem Twoje zmiany czasowe)
-        .to(".poem-container", 1, { autoAlpha: 0, y: -30, filter: "blur(5px)" }, "+=14")
+        .to(".poem-container", 1, { autoAlpha: 0, y: -30, filter: "blur(5px)" }, "+=24")
         .call(() => document.body.classList.remove("dark-mode")) // Wyłącz czarne tło
 
         // --- GALERIA (Pionowa, 4 sloty) ---
@@ -67,7 +67,7 @@ const animationTimeline = () => {
             0.6 // Odstęp czasu między zdjęciami
         )
         .from(".gallery-text", 1, { opacity: 0, y: 20 }, "-=0.5")
-        .to(".gallery", 0.7, { opacity: 0, y: -50, scale: 0.9 }, "+=8") // Wyjazd galerii
+        .to(".gallery", 0.7, { opacity: 0, y: -50, scale: 0.9 }, "+=10") // Wyjazd galerii
 
         // --- FINAŁ ---
         .from(".six", 0.5, { opacity: 0, y: 30 })
