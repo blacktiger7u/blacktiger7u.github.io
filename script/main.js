@@ -56,7 +56,7 @@ const animationTimeline = () => {
         .from(".poem-text", 2, { opacity: 0 }, "+=0.5")
         .from(".poem-signature", 1, { opacity: 0, y: 10 }, "+=1")
         // Czas na czytanie (zostawiłem Twoje zmiany czasowe)
-        .to(".poem-container", 1, { autoAlpha: 0, y: -30, filter: "blur(5px)" }, "+=24")
+        .to(".poem-container", 1, { autoAlpha: 0, y: -30, filter: "blur(5px)" }, "+=22")
         .call(() => document.body.classList.remove("dark-mode")) // Wyłącz czarne tło
 
         // --- GALERIA (Pionowa, 4 sloty) ---
@@ -67,7 +67,7 @@ const animationTimeline = () => {
             0.6 // Odstęp czasu między zdjęciami
         )
         .from(".gallery-text", 1, { opacity: 0, y: 20 }, "-=0.5")
-        .to(".gallery", 0.7, { opacity: 0, y: -50, scale: 0.9 }, "+=10") // Wyjazd galerii
+        .to(".gallery", 0.7, { opacity: 0, y: -50, scale: 0.9 }, "+=9") // Wyjazd galerii
 
         // --- FINAŁ ---
         .from(".six", 0.5, { opacity: 0, y: 30 })
